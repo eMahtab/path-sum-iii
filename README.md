@@ -6,5 +6,5 @@ Given the root of a binary tree and an integer targetSum, return the number of p
 
 The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
 
-![Path Sum III]("example.JPG"?raw=true)
+![Path Sum III](example.JPG?raw=true)
 
