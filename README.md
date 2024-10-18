@@ -47,7 +47,7 @@ class Solution {
 }
 ```
 
-## Implementation 1b : Making leetcode happy (when node.val is very large, target-node.val can lead to integer overflow)
+## Implementation 1b : O(n^2) Making leetcode happy (when node.val is very large, target-node.val can lead to integer overflow)
 ```java
 class Solution {
    public int pathSum(TreeNode root, int sum) {
@@ -70,9 +70,32 @@ class Solution {
 }
 ```
 
+# Implementation 2 : O(n) Using Prefix Sum
+```java
+class Solution {
+    public int pathSum(TreeNode root, int targetSum) {
+        Map<Long, Integer> map = new HashMap<>();
+        map.put(0L, 1);
+        return helper(root, (long) targetSum, 0, map);
+    }
+
+    private int helper(TreeNode node, long targetSum, long prefixSum, Map<Long, Integer> map) {
+        if (node == null) {
+            return 0;
+        }
+        prefixSum += node.val;
+        int count = map.getOrDefault(prefixSum - targetSum, 0);
+        map.put(prefixSum, map.getOrDefault(prefixSum, 0) + 1);
+        count += helper(node.left, targetSum, prefixSum, map) + helper(node.right, targetSum, prefixSum, map);
+        map.put(prefixSum, map.get(prefixSum) - 1);
+        return count;
+    }
+}
+```
+
 
 # References :
 1. https://www.youtube.com/watch?v=uZzvivFkgtM
-
+2. https://github.com/ojasmaru/LetsAlgoTogether/blob/master/Path%20Sum%20III/Java/QuickStart.java
 
 
