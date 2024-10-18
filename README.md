@@ -9,7 +9,7 @@ The path does not need to start or end at the root or a leaf, but it must go dow
 ![Path Sum III](example.JPG?raw=true)
 
 
-# Implementation : O(n^2)
+# Implementation 1a : O(n^2)
 ```java
 /**
  * Definition for a binary tree node.
@@ -34,6 +34,29 @@ class Solution {
    }
 
     public int findPath(TreeNode node, int target){
+        int numberOfPathFound = 0;
+        if(node.val == target)
+            numberOfPathFound++;
+        if(node.left != null)
+            numberOfPathFound += findPath(node.left, target - node.val);
+        if(node.right != null)    
+            numberOfPathFound += findPath(node.right, target - node.val);
+        
+        return numberOfPathFound;
+    }
+}
+```
+
+## Implementation 1b : Making leetcode happy
+```java
+class Solution {
+   public int pathSum(TreeNode root, int sum) {
+        if(root == null)
+            return 0;
+        return pathSum(root.left, sum) + pathSum(root.right, sum) + findPath(root, sum);
+   }
+
+    public int findPath(TreeNode node, long target){
         int numberOfPathFound = 0;
         if(node.val == target)
             numberOfPathFound++;
