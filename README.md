@@ -10,6 +10,7 @@ The path does not need to start or end at the root or a leaf, but it must go dow
 
 
 # Implementation : O(n^2)
+```java
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
