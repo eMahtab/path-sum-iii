@@ -47,7 +47,7 @@ class Solution {
 }
 ```
 
-## Implementation 1b : Making leetcode happy (when node.val is very large, int can't hold it and it will overflow)
+## Implementation 1b : Making leetcode happy (when node.val is very large, target-node.val can lead to integer overflow)
 ```java
 class Solution {
    public int pathSum(TreeNode root, int sum) {
